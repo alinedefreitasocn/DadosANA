@@ -16,7 +16,7 @@ def ano_hidrologico(df, name, path):
     anoss = np.sort(anos)
 
     # como ele eh conjunto aberto, nao inclui os valores mostrados
-    maximos_mensais = pd.DataFrame(columns = ['Ano Inicio', 'Ano Fim', 'Data', 'Maximo'])
+    maximos_anuais = pd.DataFrame(columns = ['Ano Inicio', 'Ano Fim', 'Data', 'Maximo'])
     for ano in anoss:
         water_year = []
         data_inicio = dt.datetime(ano, 9, 30)
@@ -29,10 +29,10 @@ def ano_hidrologico(df, name, path):
             maximo_data = str(water_year.index[water_year.chuva == water_year.chuva.max()])
             maximo_data = maximo_data[find_nth(maximo_data, '[', 1)+2:find_nth(maximo_data, ']', 1)-1]
             maximo_valor = water_year.chuva.max()
-        maximos_mensais = maximos_mensais.append({'Data': maximo_data,
+        maximos_anuais = maximos_anuais.append({'Data': maximo_data,
                                                   'Maximo': "{:10.2f}".format(maximo_valor),
                                                   'Ano Inicio': ano,
                                                   'Ano Fim' : ano+1},
                                                     ignore_index=True)
 
-    maximos_mensais.to_csv(path + '/' + name + '_maximos_anuais.csv', sep=';')
+    maximos_anuais.to_csv(path + '/' + name + '_maximos_anuais.csv', sep=';')
