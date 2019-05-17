@@ -35,4 +35,4 @@ def ano_hidrologico(df, name, path):
                                                   'Ano Fim' : ano+1},
                                                     ignore_index=True)
 
-    maximos_mensais.to_csv(path + '/' + name + '_maximos_mensais.csv', sep=';')
+    maximos_mensais.to_csv(path + '/' + name + '_maximos_anuais.csv', sep=';')
