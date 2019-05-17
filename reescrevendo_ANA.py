@@ -27,6 +27,12 @@ import os
 
 " ALTERAR SOMENTE ESSA LINHA COM O PATHNAME E O NOME DO ARQUIVO A SER LIDO "
 " SEPARADOS POR VIRGULA E COM A ULTIMA CONTRABARRA NA VARIAVEL DO FILENAME "
+def ano_bissexto(ano):
+    if ano % 4 == 0:
+        if ano % 100 != 0:
+            if ano % 400 == 0:
+                return True
+    return False
 
 def reescreve(file, nconsiste):
 #    file = sg.PopupGetFile('Arquivo ANA original')
@@ -89,14 +95,14 @@ def reescreve(file, nconsiste):
     #        dia = int(header[-2:])  # pega so o numero do dia. i eh o nome da col
     #        mes = line.month
     #        ano = line.year
-            """ { IMPORTANTE: Para os meses com 30 dias, estava dando erro na
-            hora de gerar o timestamp. Resolvi isso com o IF. Porem tive que
-            generalizar o mes de fevereiro para 28 dias, desconsiderando o
-            a existencia do dia 29 em anos bisextos } """
+
             if int(header[-2:]) == 31 and line.month in [4, 6, 9, 11]:
                 continue
 
-            if line.month == 2 and int(header[-2:]) in range(29, 32):
+            elif line.month == 2 and int(header[-2:]) in range(29, 32) and not(bissexto):
+                continue
+
+            elif line.month == 2 and int(header[-2:]) in range(30, 32) and bissexto:
                 continue
 
             datahora = pd.Timestamp(line.year, line.month, int(header[-2:]))
