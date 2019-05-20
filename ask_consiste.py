@@ -3,6 +3,12 @@
 Created on Fri May 17 08:32:33 2019
 
 @author: aline
+
+Janela simples para perguntar pro operador se deseja utilizar
+a serie de dados bruta ou consistida. Nesse caso, foi feito
+especificamente para a analise dos dados da ANA, que vem com
+uma coluna indicando 1 para dados brutos e 2 para dados consistidos
+
 """
 
 import PySimpleGUI as sg
@@ -14,17 +20,16 @@ import PySimpleGUI as sg
 
 # The callback functions
 
-    # Layout the design of the GUI
 def ask():
+    # definindo o layout da janela de entrada
     layout = [[sg.Text('   Selecione o nivel de consistencia dos dados', auto_size_text=True)],
               [sg.Text('              '), sg.Button('Brutos'), sg.Button('Consistidos'), ]]
 
     # Show the Window to the user
     window = sg.Window('Button callback example', layout)
 
-    # Event loop. Read buttons, make callbacks
-    #while True:
-        # Read the Window
+
+    # Read the Window
     event, value = window.Read()
     # Take appropriate action based on button
     if event == 'Brutos':
@@ -33,6 +38,3 @@ def ask():
     elif event == 'Consistidos':
         nconsiste = 2
     return nconsiste
-
-# All done!
-#sg.PopupOK('Done')
