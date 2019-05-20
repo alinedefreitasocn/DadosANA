@@ -114,7 +114,7 @@ def reescreve(file, nconsiste):
     ANA_serie_temporal.index = ANA_serie_temporal.datahora
     ANA_serie_temporal = ANA_serie_temporal.drop('datahora', axis=1)
 
-    ANA_serie_temporal.to_csv(path + '/' + filename[:-4] + '_serie_temporal.csv',
+    ANA_serie_temporal.to_csv(path + '/' + filename[:-4] + '_' + str(nconsiste) + '_serie_temporal.csv',
                               sep=';',
                               na_rep='NaN')
     #        if chuva[i][0] > lim_chuva:
